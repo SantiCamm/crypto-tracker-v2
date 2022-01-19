@@ -1,45 +1,74 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Button, Menu, Typography, Avatar } from "antd";
 import { Link } from "react-router-dom";
 import {
-  MoneyCollectOutlined,
-  BulbOutlined,
+  // MoneyCollectOutlined,
+  // BulbOutlined,
   FundOutlined,
   MenuOutlined,
   HomeOutlined,
 } from "@ant-design/icons";
-import icon from "../images/cryptocurrency.png"
+import icon from "../images/cryptocurrency.png";
+
+const { Item } = Menu;
+const { Title } = Typography;
 
 const Navbar = () => {
-  return <div className="nav-container">
+  const [activeMenu, setActiveMenu] = useState(false);
+  const [screenSize, setScreenSize] = useState(undefined);
+
+  useEffect(() => {
+    const handleResize = () => setScreenSize(window.innerWidth);
+    window.addEventListener("resize", handleResize);
+
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (screenSize <= 768) {
+      setActiveMenu(false);
+    } else {
+      setActiveMenu(true);
+    }
+  }, [screenSize]);
+
+  return (
+    <div className="navbar">
+    <div className="nav-container">
       <div className="logo-container">
-          <Avatar src={icon} size="large"/>
-          <Typography.Title level={2} className="logo">
-              <Link to="/">CryptoTracker</Link>
-          </Typography.Title>
-          {/* <Button className="menu-control-container">
-
-          </Button> */}
+        <Avatar src={icon} size="large"/>
+        <Title level={2} className="logo">
+          <Link to="/">CryptoVision</Link>
+        </Title>
+        <Button
+          className="menu-control-container"
+          onClick={() => setActiveMenu(!activeMenu)}
+        >
+          <MenuOutlined style={{color: "white"}}/>
+        </Button>
       </div>
-      <Menu theme="dark">
-          <Menu.Item icon={<HomeOutlined/>} key={1}>
+      {activeMenu && (
+        <Menu theme="dark">
+          <Item icon={<HomeOutlined />} key="home">
             <Link to="/">Home</Link>
-          </Menu.Item>
+          </Item>
 
-          <Menu.Item icon={<FundOutlined/>} key={2}>
+          <Item icon={<FundOutlined />} key="cryptocurrencies">
             <Link to="/cryptocurrencies">Cryptocurrencies</Link>
-          </Menu.Item>
+          </Item>
 
-          <Menu.Item icon={<MoneyCollectOutlined/>} key={3}>
+          {/* <Item icon={<MoneyCollectOutlined/>} key={3}>
             <Link to="/exchanges">Exchanges</Link>
-          </Menu.Item>
+          </Item> */}
 
-          {/* <Menu.Item icon={<BulbOutlined/>} key={4}>
+          {/* <Item icon={<BulbOutlined/>} key={4}>
             <Link to="/news">News</Link>
-          </Menu.Item> */}
-
-      </Menu>
-  </div>;
+          </Item> */}
+        </Menu>
+      )}
+    </div>
+    </div>
+  );
 };
 
 export default Navbar;

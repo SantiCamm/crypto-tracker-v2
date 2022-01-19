@@ -2,17 +2,17 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { Typography, Row, Col, Statistic } from "antd";
 import millify from "millify";
-import { useGetCryptosQuery } from "../services/cryptoApi";
-import { Cryptocurrencies, News } from "../components";
+import { useGetCoinsQuery } from "../services/cryptoApi";
+import { Cryptocurrencies, Loader } from "../components";
 
 const { Title } = Typography;
 
 const Homepage = () => {
-  const { data, isFetching } = useGetCryptosQuery(10);
+  const { data, isFetching } = useGetCoinsQuery(10);
   const globalStats = data?.data?.stats;
 
   if (isFetching) {
-    return "Loading";
+    return <Loader />;
   }
 
   return (
@@ -64,14 +64,14 @@ const Homepage = () => {
       <Cryptocurrencies simplified />
 
       {/* <div className="home-heading-container">
-        <Title level={2} className="home-title">
-          Latest crypto news
-        </Title>
-        <Title level={3} className="show-more">
-          <Link to="/news">Show More</Link>
-        </Title>
-      </div>
-      <News simplified /> */}
+      <Title level={2} className="home-title">
+        Latest crypto news
+      </Title>
+      <Title level={3} className="show-more">
+        <Link to="/news">Show More</Link>
+      </Title>
+    </div>
+    <News simplified /> */}
     </>
   );
 };

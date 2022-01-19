@@ -2,9 +2,10 @@
     --text-primary: #000;
     --bgPrimary: #fff;
     --bgSecondary: #F9F9F9;
-    --pink: #0071bd;
+    --light: #0071bd;
     --light-blue: #e6f7ff;
     --border: #d9d9d9;
+    --bgDark: #001529;
 }
 
 * {
@@ -14,22 +15,21 @@
 }
 
 a:hover {
-    color: var(--pink) !important;
+    color: var(--light) !important;
 }
 
 .app {
     display: flex;
     overflow: hidden;
+    background-color: var(--bgDark);
 }
 
 .navbar {
-    flex: 0.2;
-    background-color: rgb(0, 21, 41);
+    flex: 0.15;
 }
 
 .main {
-    flex: 0.8;
-    width: 100%;
+    flex: 0.85;
 }
 
 .routes {
@@ -39,26 +39,18 @@ a:hover {
 .nav-container {
     position: fixed;
     left: 0;
-    margin: 10px;
     height: 100vh;
-    margin: 0px;
-    background-color: rgb(0, 21, 41);
+    background-color: var(--bgDark);
+    width: 15%;
 }
 
 .logo-container {
-    background-color: #001529;
     display: flex;
     padding: 20px;
-    align-items: center;
-    width: 100%;
-}
-
-.logo {
-    margin: 0 0 0 15px;
-}
-
-.logo a {
-    color: white;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 15px;
+    row-gap: 5px;
 }
 
 .menu-control-container {
@@ -67,7 +59,7 @@ a:hover {
     right: 10px !important;
     top: 25px !important;
     font-size: 1.2rem !important;
-    background-color: var(--bgSecondary) !important;
+    background-color: var(--bgDark) !important;
     border: none !important;
 }
 
@@ -81,6 +73,9 @@ a:hover {
 @media screen and (max-width:1300px) {
     .main {
         margin-left: 50px;
+    }
+    .nav-container {
+        width: 20%;
     }
 }
 
@@ -106,19 +101,22 @@ a:hover {
     }
     .main {
         flex: 1;
-        margin-top: 90px;
-        margin-left: 0px;
-        margin-right: 10px;
+        margin: 80px 0 0 0;
     }
     .nav-container {
-        height: 8vh;
         position: fixed;
+        height: 100px;
         width: 100%;
         z-index: 100;
-        background-color: var(--bgSecondary);
+        background-color: var(--bgDark);
+        /* display: flex;
+        align-items: center;
+        justify-content: center; */
     }
     .menu-control-container {
-        display: block !important;
+        display: flex !important;
+        align-items: center;
+        justify-content: center;
     }
     .ant-menu {
         position: absolute;
@@ -128,7 +126,7 @@ a:hover {
         font-size: 1.4rem !important;
     }
     .show-more {
-        font-size: 1.3rem !important;
+        font-size: 1rem !important;
     }
 }
 
@@ -149,7 +147,7 @@ a:hover {
 
 .coin-heading-container .coin-name {
     font-weight: 900;
-    color: var(--pink);
+    color: var(--light);
 }
 
 .coin-heading-container p {
@@ -163,19 +161,20 @@ a:hover {
     justify-content: space-between;
     align-items: center;
     gap: 40px;
+    padding-top: 20px;
 }
 
 .stats-container h2 {
     font-weight: 700;
     font-size: 1.4rem;
     margin-top: 20px;
-    color: var(--pink);
+    color: var(--light);
 }
 
 .coin-details-heading {
     font-weight: 700 !important;
     margin-top: 20px !important;
-    color: var(--pink) !important;
+    color: var(--light) !important;
 }
 
 .coin-stats {
@@ -211,7 +210,7 @@ a:hover {
 
 .coin-desc-link h2 {
     font-weight: 700;
-    color: var(--pink);
+    color: var(--light);
 }
 
 .coin-desc-link p {
@@ -220,7 +219,7 @@ a:hover {
 }
 
 .coin-desc-link a {
-    color: var(--pink);
+    color: var(--light);
 }
 
 .coin-desc-link h3 {
@@ -250,7 +249,7 @@ a:hover {
 }
 
 .coin-link a {
-    color: var(--pink);
+    color: var(--light);
     font-weight: 700;
     font-size: 1rem;
 }
@@ -327,11 +326,12 @@ a:hover {
     display: flex;
     justify-content: space-between;
     gap: 50px;
-    color: #0071bd;
+    color: var(--light);
 }
 
 .chart-title {
-    color: #0071bd !important;
+    color: var(--light) !important;
+    padding-top: 10px;
 }
 
 .price-container {
@@ -388,9 +388,12 @@ a:hover {
 }
 
 .footer {
-    background-color: #001529;
     display: flex;
     flex-direction: column;
-    padding: 20px;
+    padding: 25px;
     align-items: center;
+}
+
+.logo {
+    color: black;
 }

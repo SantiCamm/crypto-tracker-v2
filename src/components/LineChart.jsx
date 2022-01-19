@@ -1,7 +1,6 @@
 import React from "react";
 import { Line } from "react-chartjs-2";
 import { Col, Row, Typography } from "antd";
-import moment from "moment";
 import {
   Chart as ChartJS,
   CategoryScale,
@@ -35,8 +34,6 @@ const LineChart = ({ coinHistory, currentPrice, coinName }) => {
     coinTimestamps.push(new Date(coin.timestamp * 1000).toLocaleDateString());
     // coinTimestamps.push(moment.unix(coin.timestamp).format("YYYY-MM-DD"));
   }
-
-  console.log(coinTimestamps)
 
   const data = {
     labels: coinTimestamps,
